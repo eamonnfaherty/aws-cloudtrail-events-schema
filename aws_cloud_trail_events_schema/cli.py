@@ -48,12 +48,21 @@ def eval_shape(shape_name, data):
 
 
 @click.command()
-@click.argument('event_source')
+@click.argument('event_source', default="")
 @click.option('--api_version',
               help='Version of the service API interacted with which resulted in the Cloudtrail event being triggered',
               default='latest')
 def schema(event_source, api_version):
     """Prints the AWS Cloudtrail event that is dispatched when an API call occurs"""
+    if event_source == "":
+        data_directory_name = botocore.__file__.replace("__init__.py", "data/{}".format(event_source))
+        services = list_dirs(data_directory_name)
+        print("Services:")
+        for service in services:
+            print("- {}".format(service))
+        return
+        # exit(api_versions_found)
+
     event_sources = event_source.split(".")
     l_event_sources = len(event_sources)
 
