@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="aws-cloudtrail-events-schema",
-    version="0.0.2",
+    version="0.0.4",
     author="Eamonn Faherty",
     author_email="python-packages@designandsolve.co.uk",
     description="Utility to discover AWS CloudTrail events pushed into S3",
