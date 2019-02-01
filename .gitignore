@@ -1,3 +1,7 @@
 .idea
+aws_cloudtrail_events_schema.egg-info/
+build
+dist
 *.iml
 venv
+Makefile

@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="eamonnfaherty",
-    version="0.0.1",
+    name="aws-cloudtrail-events-schema",
+    version="0.0.2",
     author="Eamonn Faherty",
     author_email="python-packages@designandsolve.co.uk",
     description="Utility to discover AWS CloudTrail events pushed into S3",
@@ -18,5 +18,12 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    entry_points={
+        'console_scripts': [
+            'cloudtrail-schema = aws_cloud_trail_events_schema.cli:schema'
+    ]},
+    install_requires=[
+        "botocore",
+        "Click",
+    ],
 )
-

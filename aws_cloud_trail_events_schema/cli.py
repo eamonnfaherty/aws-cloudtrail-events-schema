@@ -4,7 +4,6 @@ import botocore
 import os
 import json
 
-
 SPECIFIED__SERVICE = 0
 SPECIFIED__OPERATION = 1
 SPECIFIED__INPUT_OUTPUT = 2
@@ -66,12 +65,15 @@ def schema(event_source, api_version):
     if l_event_sources > SPECIFIED__OPERATION:
         operation_specified = event_sources[SPECIFIED__OPERATION]
         if l_event_sources == SPECIFIED__INPUT_OUTPUT:
-            exit("You need to specify input or output eg: {}.{}.output".format(service_specified,operation_specified))
+            exit("You need to specify input or output eg: {}.{}.output".format(service_specified, operation_specified))
         operation = operations[operation_specified]
         if l_event_sources > SPECIFIED__INPUT_OUTPUT:
             input_output_specified = event_sources[SPECIFIED__INPUT_OUTPUT]
             input_output = operation.get(input_output_specified)
-            evaled = eval_shape(input_output.get('shape'), data)
+            if input_output is None:
+                exit("Result\n-----\n{}.{} has no {}".format(service_specified, operation_specified, input_output_specified))
+            else:
+                evaled = eval_shape(input_output.get('shape'), data)
         else:
             evaled = eval_shape(operation.get('shape'), data)
         print("Description\n------\n{}".format(operation.get('documentation')))
@@ -80,6 +82,7 @@ def schema(event_source, api_version):
     else:
         print('Operations: \n- {}'.format("\n- ".join(data.get('operations').keys())))
     return
+
 
 if __name__ == '__main__':
     schema()
