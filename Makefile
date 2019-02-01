@@ -6,6 +6,7 @@ build:
 	docker build . -t $(TAG)
 
 publish:
+	@echo "About to push"
 	docker push $(TAG)
 
 upload:
