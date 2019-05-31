@@ -1,5 +1,5 @@
 ## Background
-The AWS platform allows you to log API calls using [AWS CloudTrial](https://aws.amazon.com/cloudtrail).
+The AWS platform allows you to log API calls using [AWS CloudTrail](https://aws.amazon.com/cloudtrail).
 
 You can use tools like [AWS Config](https://aws.amazon.com/config/) and [CaptialOne's CloudCustodian](https://github.com/cloud-custodian/cloud-custodian) 
 to create security controls that react to these events.
